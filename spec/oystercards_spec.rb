@@ -1,3 +1,5 @@
-describle OysterCards do
-  
+require 'oystercards'
+
+describe OysterCards do
+
 end
