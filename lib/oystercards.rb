@@ -1,8 +1,14 @@
 class OysterCards
-  DEAFUALT_BALANCE = 0
+
   attr_reader :money
-  def initialize(money=DEAFUALT_BALANCE)
+
+  def initialize
     @money = 0
   end
+
+  def top_up(amount)
+    @money += amount
+  end
+
 
 end
