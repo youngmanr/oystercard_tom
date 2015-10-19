@@ -1,4 +1,5 @@
 class OysterCards
+  MAX_CAPACITY = 91
 
   attr_reader :money
 
@@ -7,7 +8,8 @@ class OysterCards
   end
 
   def top_up(amount)
-    @money += amount
+  fail "The limit is 90" if amount + money > 90
+  @money += amount
   end
 
 
