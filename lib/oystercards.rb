@@ -8,8 +8,12 @@ class OysterCards
   end
 
   def top_up(amount)
-  fail "The limit is 90" if amount + money > 90
-  @money += amount
+   fail "The limit is 90" if amount + money > 90
+   @money += amount
+  end
+
+  def deduct(amount)
+ 	 @money -= amount
   end
 
 

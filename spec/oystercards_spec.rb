@@ -18,4 +18,14 @@ describe OysterCards do
    end
   end
 
+ describe '#deduct' do
+  it {is_expected.to respond_to(:deduct).with(1).argument }
+
+  it 'deduct money' do
+   expect{ subject.deduct 1 }.to change{ subject.money }.by -1
+
+  end
+ end
+
+
 end
