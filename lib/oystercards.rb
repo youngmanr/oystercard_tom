@@ -9,6 +9,7 @@ class OysterCards
   end
 
   def in_journey?
+    @in_journey
   end
 
   def top_up(amount)
