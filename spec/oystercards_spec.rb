@@ -14,6 +14,12 @@ describe OysterCards do
     end
   end
 
+  describe 'travel history' do
+    it 'is expected be able to store a log of the journies' do
+      expect(subject.travel_history).to eq []
+    end
+  end
+
   describe '#top_up' do
     it 'can top up the balance' do
       expect{ subject.top_up 1 }.to change{ subject.money }.by 1
