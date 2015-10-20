@@ -41,7 +41,7 @@ describe OysterCards do
 
     it 'is in journey after card has touched in' do
       subject.touch_in
-      expect(subject.in_journey?).to be true
+      expect(subject).to be_in_journey
     end
   end
 
@@ -51,7 +51,7 @@ describe OysterCards do
     it 'is not in journey after card has touched out' do
       subject.touch_in
       subject.touch_out
-      expect(subject.in_journey?).to be false
+      expect(subject).not_to be_in_journey
     end
   end
 
