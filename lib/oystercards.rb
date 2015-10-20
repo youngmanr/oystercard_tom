@@ -15,6 +15,9 @@ class OysterCards
   def touch_in
   end
 
+  def touch_out
+  end
+
   def top_up(amount)
    fail "The limit is 90" if amount + money >= 90
    @money += amount

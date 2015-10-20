@@ -24,12 +24,12 @@ describe OysterCards do
     end
 
     it 'limit is 90' do
-      expect{subject.top_up(OysterCards::MAX_CAPACITY)}.to raise_error("The limit is 90")
+      expect{ subject.top_up(OysterCards::MAX_CAPACITY) }.to raise_error("The limit is 90")
     end
   end
 
   describe '#deduct' do
-    it {is_expected.to respond_to(:deduct).with(1).argument }
+    it { is_expected.to respond_to(:deduct).with(1).argument }
 
     it 'deduct money' do
       expect{ subject.deduct 1 }.to change{ subject.money }.by -1
@@ -37,11 +37,16 @@ describe OysterCards do
   end
 
   describe '#touch_in' do
-    it { is_expected.to respond_to(:touch_in)}
+    it { is_expected.to respond_to(:touch_in) }
+
+    it 'is in journey after card has touched in' do
+      subject.touch_in
+      expect(subject.in_journey?).to be true
+    end
   end
 
   describe '#touch_out' do
-    it { is_expected.to respond_to(:touch_out)}
+    it { is_expected.to respond_to(:touch_out) }
   end
 
 end
