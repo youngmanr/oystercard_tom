@@ -3,11 +3,12 @@ class OysterCards
   MAX_CAPACITY = 90
   MIN_FARE = 1
 
-  attr_reader :money
+  attr_reader :money, :travel_history
 
   def initialize
     @money = 0
     @in_journey = false
+    @travel_history = []
   end
 
   def in_journey?
