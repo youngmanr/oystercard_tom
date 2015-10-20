@@ -24,7 +24,7 @@ class OysterCards
   end
 
   def top_up(amount)
-   fail "The limit is 90" if amount + money >= 90
+   fail "The limit is 90" if amount + money >= MAX_CAPACITY
    @money += amount
   end
 

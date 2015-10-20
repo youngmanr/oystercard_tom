@@ -45,8 +45,8 @@ describe OysterCards do
       expect(subject).to be_in_journey
     end
 
-    it 'raises a error if min funds not available' do
-      expect {subject.touch_in}.to raise_error "min funds not available"
+    it 'raises an error if min funds not available' do
+      expect { subject.touch_in }.to raise_error "min funds not available"
     end
   end
 
