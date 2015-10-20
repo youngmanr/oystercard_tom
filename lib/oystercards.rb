@@ -14,7 +14,7 @@ class OysterCards
     @in_journey
   end
 
-  def touch_in
+  def touch_in(station_ID)
     raise "min funds not available" if money < MIN_FARE
     @in_journey = true
   end
@@ -34,6 +34,5 @@ class OysterCards
   def deduct(amount)
  	  @money -= amount
   end
-
 
 end
