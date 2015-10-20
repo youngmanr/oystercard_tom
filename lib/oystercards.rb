@@ -7,22 +7,22 @@ class OysterCards
 
   def initialize
     @money = 0
-    @in_journey = false
+
     @travel_history = []
   end
 
   def in_journey?(station)
-    @in_journey
+
   end
 
   def touch_in(station)
     raise "min funds not available" if money < MIN_FARE
-    @in_journey = true
+
     @travel_history << station
   end
 
   def touch_out
-    @in_journey = false
+    
     deduct(MIN_FARE)
   end
 
