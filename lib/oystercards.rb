@@ -3,27 +3,26 @@ class OysterCards
   MAX_CAPACITY = 90
   MIN_FARE = 1
 
-  attr_reader :money, :travel_history
+  attr_reader :money, :entry_station
 
   def initialize
     @money = 0
 
-    @travel_history = []
+    @entry_station
   end
 
-  def in_journey?(station)
-
+  def in_journey?
+    !!entry_station
   end
 
   def touch_in(station)
     raise "min funds not available" if money < MIN_FARE
-
-    @travel_history << station
+    @entry_station = station
   end
 
   def touch_out
-    
     deduct(MIN_FARE)
+    @entry_station = nil
   end
 
   def top_up(amount)

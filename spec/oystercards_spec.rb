@@ -9,17 +9,8 @@ describe OysterCards do
   end
 
   describe 'journey' do
-    let(:station) {station}
-    it { is_expected.to respond_to(:in_journey?).with(1).argument }
-
     it 'a new oystercard is not in journey' do
-      expect(subject.in_journey?(:station)).to be false
-    end
-  end
-
-  describe 'travel history' do
-    it 'is expected be able to store a log of the journies' do
-      expect(subject.travel_history).to eq []
+      expect(subject.in_journey?).to be false
     end
   end
 
@@ -35,34 +26,34 @@ describe OysterCards do
 
   describe '#touch_in' do
 
-    let(:station) {station}
+    let(:station) {:station}
 
     it 'is in journey after card has touched in' do
       subject.top_up(10)
-      subject.touch_in(:station)
-      expect(subject).to be_in_journey(:station)
+      subject.touch_in(station)
+      expect(subject).to be_in_journey
     end
 
     it 'raises an error if min funds not available' do
-      expect { subject.touch_in(:station) }.to raise_error "min funds not available"
+      expect { subject.touch_in(station) }.to raise_error "min funds not available"
     end
 
-    it 'stores touch in travel history to an array' do
+    it 'stores entry station as variable' do
       subject.top_up(10)
-      subject.touch_in(:station)
-      expect(subject.travel_history).to eq [:station]
+      subject.touch_in(station)
+      expect(subject.entry_station).to eq station
     end
   end
 
   describe '#touch_out' do
 
-    let(:station) {station}
+    let(:station) {:station}
 
     it 'is not in journey after card has touched out' do
       subject.top_up(10)
-      subject.touch_in(:station)
+      subject.touch_in(station)
       subject.touch_out
-      expect(subject).not_to be_in_journey(:station)
+      expect(subject).not_to be_in_journey
     end
 
     it 'deducts the fare on touch out' do
