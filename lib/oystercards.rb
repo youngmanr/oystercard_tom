@@ -18,6 +18,7 @@ class OysterCards
   def touch_in(station_ID)
     raise "min funds not available" if money < MIN_FARE
     @in_journey = true
+    @travel_history << station_ID
   end
 
   def touch_out
