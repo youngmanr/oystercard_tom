@@ -40,4 +40,8 @@ describe OysterCards do
     it { is_expected.to respond_to(:touch_in)}
   end
 
+  describe '#touch_out' do
+    it { is_expected.to respond_to(:touch_out)}
+  end
+
 end
