@@ -47,6 +47,12 @@ describe OysterCards do
 
   describe '#touch_out' do
     it { is_expected.to respond_to(:touch_out) }
+
+    it 'is not in journey after card has touched out' do
+      subject.touch_in
+      subject.touch_out
+      expect(subject.in_journey?).to be false
+    end
   end
 
 end
