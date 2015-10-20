@@ -10,6 +10,10 @@ describe OysterCards do
 
   describe 'journey' do
     it { is_expected.to respond_to(:in_journey?) }
+
+    it 'a new oystercard is not in journey' do
+      expect(subject.in_journey?).to be false
+    end
   end
 
   describe '#top_up' do
