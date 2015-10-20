@@ -40,6 +40,13 @@ describe OysterCards do
     it 'raises an error if min funds not available' do
       expect { subject.touch_in(:dummy_station_ID) }.to raise_error "min funds not available"
     end
+
+    it 'stores touch in tavel history to a array' do
+      subject.top_up(10)
+      subject.touch_in(:dummy_station_ID)
+      expect(subject.travel_history).to eq [:dummy_station_ID]
+
+    end
   end
 
   describe '#touch_out' do
