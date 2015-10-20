@@ -1,14 +1,18 @@
 class OysterCards
-  MAX_CAPACITY = 91
+  MAX_CAPACITY = 90
 
   attr_reader :money
 
   def initialize
     @money = 0
+    @in_journey = false
+  end
+
+  def in_journey?
   end
 
   def top_up(amount)
-   fail "The limit is 90" if amount + money > 90
+   fail "The limit is 90" if amount + money >= 90
    @money += amount
   end
 
