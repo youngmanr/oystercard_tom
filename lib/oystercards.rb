@@ -11,7 +11,7 @@ class OysterCards
     @travel_history = []
   end
 
-  def in_journey?
+  def in_journey?(station)
     @in_journey
   end
 

@@ -9,10 +9,11 @@ describe OysterCards do
   end
 
   describe 'journey' do
-    it { is_expected.to respond_to(:in_journey).with(1).argument }
+    let(:station) {station}
+    it { is_expected.to respond_to(:in_journey?).with(1).argument }
 
     it 'a new oystercard is not in journey' do
-      expect(subject.in_journey?).to be false
+      expect(subject.in_journey?(:station)).to be false
     end
   end
 
@@ -33,13 +34,13 @@ describe OysterCards do
   end
 
   describe '#touch_in' do
-    
+
     let(:station) {station}
 
     it 'is in journey after card has touched in' do
       subject.top_up(10)
       subject.touch_in(:station)
-      expect(subject).to be_in_journey
+      expect(subject).to be_in_journey(:station)
     end
 
     it 'raises an error if min funds not available' do
@@ -61,7 +62,7 @@ describe OysterCards do
       subject.top_up(10)
       subject.touch_in(:station)
       subject.touch_out
-      expect(subject).not_to be_in_journey
+      expect(subject).not_to be_in_journey(:station)
     end
 
     it 'deducts the fare on touch out' do
