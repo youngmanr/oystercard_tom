@@ -10,7 +10,7 @@ describe Station do
     end
 
     it 'a new station has a zone' do
-      expect(station.zone).to eq 1
+      expect(station.zone).not_to be nil
     end
   end
 
