@@ -70,20 +70,18 @@ describe OysterCard do
   end
 
   describe 'journeys' do
-    it 'journey contains information about entry zones' do
+    before do
       oystercard.top_up(10)
       oystercard.touch_in(entry_station)
       oystercard.touch_out(exit_station)
-      journey = oystercard.journeys.last
-      expect(journey[:entry_station].zone).to eq :entry_zone
+    end
+
+    it 'journey contains information about entry zones' do
+      expect(oystercard.journeys.last[:entry_station].zone).to eq :entry_zone
     end
 
     it 'journey contains information about exit zones' do
-      oystercard.top_up(10)
-      oystercard.touch_in(entry_station)
-      oystercard.touch_out(exit_station)
-      journey = oystercard.journeys.last
-      expect(journey[:exit_station].zone).to eq :exit_zone
+      expect(oystercard.journeys.last[:exit_station].zone).to eq :exit_zone
     end
   end
 end
