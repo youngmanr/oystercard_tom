@@ -56,7 +56,7 @@ describe OysterCard do
     it 'is not in journey after card has touched out' do
       oystercard.top_up(10)
       oystercard.touch_in(station)
-      oystercard.touch_out
+      oystercard.touch_out(station)
       expect(oystercard).not_to be_in_journey
     end
 
