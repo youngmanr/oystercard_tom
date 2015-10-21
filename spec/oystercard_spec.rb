@@ -63,6 +63,11 @@ describe OysterCard do
     it 'deducts the fare on touch out' do
       expect{ oystercard.touch_out(station) }.to change { oystercard.balance }.by -OysterCard::MIN_FARE
     end
+
+    it 'stores the exit station in a variable' do
+      oystercard.touch_out(station)
+      expect(oystercard.exit_station).to eq station
+    end
   end
 
 end
