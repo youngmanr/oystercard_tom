@@ -6,7 +6,7 @@ describe OysterCard do
 
   describe 'initialization' do
     it 'has a default balance of 0' do
-      expect(oystercard.money).to eq 0
+      expect(oystercard.balance).to eq 0
     end
 
     it 'a new oystercard is not in journey' do
@@ -14,13 +14,13 @@ describe OysterCard do
     end
 
     it 'the list of journeys is empty' do
-      expect(oystercard.journeys).to be_empty?
+      expect(oystercard.journeys).to be_empty
     end
   end
 
   describe '#top_up' do
     it 'the balance can be topped up' do
-      expect{ oystercard.top_up 1 }.to change{ oystercard.money }.by 1
+      expect{ oystercard.top_up 1 }.to change{ oystercard.balance }.by 1
     end
 
     it 'has a maximum balance' do
@@ -61,7 +61,7 @@ describe OysterCard do
     end
 
     it 'deducts the fare on touch out' do
-      expect{ oystercard.touch_out }.to change { oystercard.money }.by -OysterCard::MIN_FARE
+      expect{ oystercard.touch_out }.to change { oystercard.balance }.by -OysterCard::MIN_FARE
     end
   end
 
