@@ -4,6 +4,9 @@ describe OysterCard do
 
   subject(:oystercard) { described_class.new }
 
+  let(:entry_station) {double :entry_station, name: :old_street, zone: :entry_zone }
+  let(:exit_station) {double :exit_station, name: :baker_street, zone: :exit_zone }
+
   describe 'initialization' do
     it 'has a default balance of 0' do
       expect(oystercard.balance).to eq 0
@@ -30,44 +33,57 @@ describe OysterCard do
 
   describe '#touch_in' do
 
-    let(:station) {:station}
-
     it 'is in journey after card has touched in' do
       oystercard.top_up(10)
-      oystercard.touch_in(station)
+      oystercard.touch_in(entry_station)
       expect(oystercard).to be_in_journey
     end
 
     it 'raises an error if min funds not available' do
-      expect { oystercard.touch_in(station) }.to raise_error "min funds not available"
+      expect { oystercard.touch_in(entry_station) }.to raise_error "min funds not available"
     end
 
     it 'stores entry station as variable' do
       oystercard.top_up(10)
-      oystercard.touch_in(station)
-      expect(oystercard.entry_station).to eq station
+      oystercard.touch_in(entry_station)
+      expect(oystercard.entry_station).to eq entry_station
     end
   end
 
   describe '#touch_out' do
 
-    let(:station) {:station}
-
     it 'is not in journey after card has touched out' do
       oystercard.top_up(10)
-      oystercard.touch_in(station)
-      oystercard.touch_out(station)
+      oystercard.touch_in(entry_station)
+      oystercard.touch_out(exit_station)
       expect(oystercard).not_to be_in_journey
     end
 
     it 'deducts the fare on touch out' do
-      expect{ oystercard.touch_out(station) }.to change { oystercard.balance }.by -OysterCard::MIN_FARE
+      expect{ oystercard.touch_out(exit_station) }.to change { oystercard.balance }.by -OysterCard::MIN_FARE
     end
 
     it 'adds a journey to journey history' do
-      oystercard.touch_out(station)
+      oystercard.touch_out(exit_station)
       expect(oystercard.journeys).not_to be_empty
     end
   end
 
+  describe 'journeys' do
+    it 'journey contains information about entry zones' do
+      oystercard.top_up(10)
+      oystercard.touch_in(entry_station)
+      oystercard.touch_out(exit_station)
+      journey = oystercard.journeys.last
+      expect(journey[:entry_station].zone).to eq :entry_zone
+    end
+
+    it 'journey contains information about exit zones' do
+      oystercard.top_up(10)
+      oystercard.touch_in(entry_station)
+      oystercard.touch_out(exit_station)
+      journey = oystercard.journeys.last
+      expect(journey[:exit_station].zone).to eq :exit_zone
+    end
+  end
 end

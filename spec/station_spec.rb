@@ -2,15 +2,15 @@ require 'station'
 
 describe Station do
 
-  subject(:station) { described_class.new( :name, :zone) }
+  subject(:station) { described_class.new( :old_street) }
 
   describe 'initialization' do
     it 'a new station has a name' do
-      expect(station.name).to eq :name
+      expect(station.name).to eq :old_street
     end
 
     it 'a new station has a zone' do
-      expect(station.zone).to eq :zone
+      expect(station.zone).to eq 1
     end
   end
 
