@@ -64,11 +64,6 @@ describe OysterCard do
       expect{ oystercard.touch_out(station) }.to change { oystercard.balance }.by -OysterCard::MIN_FARE
     end
 
-    it 'stores the exit station in a variable' do
-      oystercard.touch_out(station)
-      expect(oystercard.exit_station).to eq station
-    end
-
     it 'adds a journey to journey history' do
       oystercard.touch_out(station)
       expect(oystercard.journeys).not_to be_empty
